@@ -1,3 +1,7 @@
+
+
+
+
 # Applicazioni Cloud Native: Oracle in azione - Demo 1
 
 ## Agenda
@@ -65,26 +69,45 @@ Oracle Cloud Infrastructure Registry è un registro gestito da Oracle che sempli
 
 A questo punto proviamo ad eseguire il push di un'immagine docker sul repository cnawebinar appena creato:
 
+
+
 ```bash
 docker pull nginx
 ```
+
+
 
 ```bash
 docker image ls
 ```
 
+
+
 ```bash
 docker tag <image-id> <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<tag> 
+```
+
+```bash
 #e.g. docker tag nginx:latest fra.ocir.io/frgp31lum6jg/nginx:1.0.0
 ```
 
+
+
 ```bash
 docker login <region-key>.ocir.io 
-#e.g. docker login fra.ocir.io
 ```
 
 ```bash
+#e.g. docker login fra.ocir.io
+```
+
+
+
+```bash
 docker push <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<tag> 
+```
+
+```bash
 #e.g. docker push fra.ocir.io/frgp31lum6jg/nginx:1.0.0
 ```
 
@@ -94,10 +117,15 @@ docker push <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<t
 
 Creazione del secret per pull da OCIR:
 
-```shell
+```bash
 kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email> 
+```
+
+```bash
 #e.g. kubectl create secret docker-registry regcred --docker-server=fra.ocir.io --docker-username=frgp31lum6jg/oracleidentitycloudservice/fpacilio@gmail.com --docker-password="<auth token>" --docker-email=fpacilio@gmail.com
 ```
+
+
 
 Creazione di un deployment nginx:
 
@@ -137,15 +165,17 @@ EOF
 
 Esposizione del servizio e creazione di un LBaaS pubblico
 
-```shell
- kubectl expose deployment nginx-deploy --name=nginx-service --type=LoadBalancer --port=80
- 
- kubectl describe svc nginx-service
- 
- IP=$(kubectl get svc nginx-service --output jsonpath='{.status.loadBalancer.ingress[0].ip }'); echo http://$IP
+```bash
+kubectl expose deployment nginx-deploy --name=nginx-service --type=LoadBalancer --port=80
 ```
 
+```bash
+kubectl describe svc nginx-service
+```
 
+```shell
+IP=$(kubectl get svc nginx-service --output jsonpath='{.status.loadBalancer.ingress[0].ip }'); echo http://$IP
+```
 
 ## Modalità **di** **creazione** **di un cluster OKE** **su** OCI
 
