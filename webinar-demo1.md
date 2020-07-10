@@ -179,7 +179,7 @@ IP=$(kubectl get svc nginx-service --output jsonpath='{.status.loadBalancer.ingr
 
 ## Modalità **di** **creazione** **di un cluster OKE** **su** OCI
 
-![image-20200710180157987](../OKE-Webinar-LiveDemo/image/image-20200710180157987.png)
+![image-20200710180157987](./image/image-20200710180157987.png)
 
 Repository Terraform per OKE: https://github.com/oracle-terraform-modules/terraform-oci-oke
 
