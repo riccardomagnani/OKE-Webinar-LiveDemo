@@ -46,7 +46,7 @@ https://docs.cloud.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengpolicyc
 - eseguire il comando oci cli per download del kubeconfig file, e.g.
 
 ```bash
-oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.eu-frankfurt-1.aaaaaaaaafqwczldmrrdenbsmi4dcyrwgbrdgmlcgi2dezbtmcrdsmbqgnsd --file $HOME/.kube/config --region eu-frankfurt-1 --token-version 2.0.0s
+oci ce cluster create-kubeconfig --cluster-id <cluster-ocid> --file $HOME/.kube/config --region eu-frankfurt-1 --token-version 2.0.0s
 ```
 
 - utilizzo dell'utility *kubectl* per verificare il corretto accesso al cluster, e.g.
@@ -67,16 +67,23 @@ A questo punto proviamo ad eseguire il push di un'immagine docker sul repository
 
 ```bash
 docker pull nginx
+```
 
+```bash
 docker image ls
+```
 
+```bash
 docker tag <image-id> <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<tag> 
 #e.g. docker tag nginx:latest fra.ocir.io/frgp31lum6jg/nginx:1.0.0
+```
 
-docker image ls
+```bash
+docker login <region-key>.ocir.io 
+#e.g. docker login fra.ocir.io
+```
 
-docker login <region-key>.ocir.io #e.g. docker login fra.ocir.io
-
+```bash
 docker push <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<tag> 
 #e.g. docker push fra.ocir.io/frgp31lum6jg/nginx:1.0.0
 ```
@@ -142,7 +149,7 @@ Esposizione del servizio e creazione di un LBaaS pubblico
 
 ## Modalità **di** **creazione** **di un cluster OKE** **su** OCI
 
-![image-20200710180157987](image/image-20200710180157987.png)
+![image-20200710180157987](../demo-git/image/image-20200710180157987.png)
 
 Repository Terraform per OKE: https://github.com/oracle-terraform-modules/terraform-oci-oke
 
