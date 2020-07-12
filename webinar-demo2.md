@@ -92,9 +92,9 @@ Dopo alcuni minuti di carico il sistema raggiunge il regime (massimi valori impo
 
 ## CI/CD via Wercker
 
-Useremo il seguente sistema semplificato come template per implementare un la nostra pipeline CI/CD.
+Useremo il seguente processo semplificato come template per implementare un la nostra pipeline CI/CD.
 
-![image-20200711165140376](image/image-20200711165140376.png)
+![image-20200712160415907](image/image-20200712160415907.png)
 
 Si mostrano i componenti del sistema:
 
