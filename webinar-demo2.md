@@ -98,7 +98,7 @@ Useremo il seguente sistema semplificato come template per implementare un la no
 
 Si mostrano i componenti del sistema:
 
-- <u>Developer IDE</u>: su cui lo sviluppatore ha gestisce una applicazione denominata *MedRecAPI* che implementa delle REST API sviluppate in Java
+- <u>Developer IDE</u>: tramite il quale gli sviluppatori gestiscono / modificano una applicazione denominata *MedRecAPI* che implementa delle REST API sviluppate in Java
 - La pipeline <u>Werker</u>
 - <u>Developer Cloud Services</u> (DevCS) usato per il GIT
 - <u>Wercker</u> come motore CI/CD (build, test, deploy)
@@ -131,11 +131,12 @@ La logica di fondo e' la seguente:
 
 
 Durante il deployment si usano i seguenti strumenti per monitorare il `rolling rollout`(su due shell distinte):
-
+```bash
 watch -n 1 kubectl get deployment,po -owide
-
+```
+```bash
 kubectl get po -w
-
+```
 
 
 Dopo il deployment si verifica che l'applicazione sia effettivamente cambiata tramite Swagger UI.
