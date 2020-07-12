@@ -53,10 +53,25 @@ Utilizzeremo i seguenti tools:
 
 ### A. Rancher
 
-Rancher e' installato come docker container sulla macchine del bastion.
+Rancher e' installato in single instance come docker container sulla macchine del *bastion*.
 
 ```bash
 docker container ps
+```
+
+Le configurazioni del Rancher sono persistete sul Block Volume della *bastion*:
+```bash
+ls -l /rancher-bv/
+```
+Infatti si puo vedere da qua:
+```bash
+docker exec -it b29f38d3f7fa bash
+```
+```bash
+cd /var/lib/rancher
+```
+```bash
+df -h .
 ```
 
 <br/>
@@ -72,7 +87,7 @@ docker container ps
 ### B. Grafana / Prometheus
 Sono installati sui minions parte del `tools pool`:
 ```bash
-kubectl get pod -n monitoring
+kubectl get pod,services -n monitoring
 ```
 
 ![image-20200712162544682](image/image-20200712162544682.png)
@@ -85,15 +100,28 @@ Si possono aggiungere
 
 <br/>
 
-### C. Kibana / ElasticSearch
+### C. Kibana / ElasticSearch / Fluentd
+Sono installati sui minions k8s del `tools pool`:
+```bash
+kubectl get deploy,ds,statefulset,pod,services -n logging-efk
+```
 
 ![image-20200712162654470](image/image-20200712162654470.png)
 
+<br/>
+
 ### D. KubeView
+
+E' installato sui minions k8s del `tools pool`:
+```bash
+kubectl get deploy,pod,services -n kubeview
+```
 
 ![image-20200712162713689](image/image-20200712162713689.png)
 
 ### E. k9s
+
+E' un tool stand-alone per sviluppatori molto utile installato sulla macchina *bastion*.
 
 ![image-20200712162736152](image/image-20200712162736152.png)
 
@@ -212,7 +240,7 @@ Oppure in un loop (solo la size dell'array):
 while true; do env TZ=Europe/Rome date  ;curl -s -X GET --header 'Accept: application/json' 'http://158.101.176.210:8080/admin/all'|jq length; sleep 2; done
 ```
 
-
+<br/>
 
 Dopo il deployment si verifica che l'applicazione sia effettivamente cambiata tramite Swagger UI.
 
