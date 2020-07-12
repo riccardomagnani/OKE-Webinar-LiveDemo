@@ -36,7 +36,7 @@ Stesso risultato si puo vedere in maniera piu agevole anche tramite k9s:
 
 Si mostra i seguenti tool:
 
-###Rancher
+### Rancher
 
 Classic Rancher view
 
@@ -46,19 +46,19 @@ New Rancher dashboard
 
 ![image-20200712162332639](image/image-20200712162332639.png)
 
-###Grafana / Prometheus
+### Grafana / Prometheus
 
 ![image-20200712162544682](image/image-20200712162544682.png)
 
-###Kibana / ElasticSearch
+### Kibana / ElasticSearch
 
 ![image-20200712162654470](image/image-20200712162654470.png)
 
-###KubeView
+### KubeView
 
 ![image-20200712162713689](image/image-20200712162713689.png)
 
-###k9s
+### k9s
 
 ![image-20200712162736152](image/image-20200712162736152.png)
 
