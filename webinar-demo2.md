@@ -36,11 +36,31 @@ Stesso risultato si puo vedere in maniera piu agevole anche tramite k9s:
 
 Si mostra i seguenti tool:
 
-* Ranger + Ranger dashboard
-* Grafana / Prometheus
-* Kibana / ElasticSearch
-* KubeView
-* k9s
+###Rancher
+
+Classic Rancher view
+
+![image-20200712162303208](image/image-20200712162303208.png)
+
+New Rancher dashboard
+
+![image-20200712162332639](image/image-20200712162332639.png)
+
+###Grafana / Prometheus
+
+![image-20200712162544682](image/image-20200712162544682.png)
+
+###Kibana / ElasticSearch
+
+![image-20200712162654470](image/image-20200712162654470.png)
+
+###KubeView
+
+![image-20200712162713689](image/image-20200712162713689.png)
+
+###k9s
+
+![image-20200712162736152](image/image-20200712162736152.png)
 
 ## 3. K8S horizontal scaling
 
@@ -138,6 +158,9 @@ watch -n 1 kubectl get deployment,po -owide
 kubectl get po -w
 ```
 
+```bash
+while true; do env TZ=Europe/Rome date  ;curl -s -X GET --header 'Accept: application/json' 'http://158.101.176.210:8080/admin/all'|jq; sleep 2; done
+```
 
 Dopo il deployment si verifica che l'applicazione sia effettivamente cambiata tramite Swagger UI.
 
