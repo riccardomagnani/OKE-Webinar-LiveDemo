@@ -2,14 +2,23 @@
 
 ## Agenda
 
-1. Overview del sistema
+1. Overview del sistema utilizzato per questa demo
 2. CNA tools
 3. K8S horizontal scaling
 4. CI/CD via Wercker
 
 ## 1. Overview del sistema
 
-Utilizzando la shell della macchina *bastion* con accesso pubblico si visualizzano le caratteristiche del sistema:
+Questa l'architettura utilizzata nella Demo 2.
+
+![image-20200712172925017](image/image-20200712172925017.png)
+
+Su questa architettura sono deployati diverse applicazioni e tools.
+
+![image-20200712173152428](image/image-20200712173152428.png)
+
+Utilizzando la shell di una macchina Linux *bastion* con accesso pubblico si visualizzano le caratteristiche del sistema:
+
 ```bash
 kubectl get no
 ```
@@ -23,7 +32,7 @@ kubectl get namespace
 
 In ogni namespace si trova una applicazione specifica.
 
-Ad esempio Grafana / Prometheus sono nel namespace = monitoring:
+Ad esempio Grafana / Prometheus sono nel `namespace = monitoring`:
 ```bash
 kubectl get pod -n monitoring
 ```
@@ -34,9 +43,9 @@ Stesso risultato si puo vedere in maniera piu agevole anche tramite k9s:
 
 ## 2. CNA tools
 
-Si mostra i seguenti tool:
+Utilizzeremo i seguenti tools:
 
-### Rancher
+### A. Rancher
 
 Classic Rancher view
 
@@ -46,19 +55,19 @@ New Rancher dashboard
 
 ![image-20200712162332639](image/image-20200712162332639.png)
 
-### Grafana / Prometheus
+### B. Grafana / Prometheus
 
 ![image-20200712162544682](image/image-20200712162544682.png)
 
-### Kibana / ElasticSearch
+### C. Kibana / ElasticSearch
 
 ![image-20200712162654470](image/image-20200712162654470.png)
 
-### KubeView
+### D. KubeView
 
 ![image-20200712162713689](image/image-20200712162713689.png)
 
-### k9s
+### E. k9s
 
 ![image-20200712162736152](image/image-20200712162736152.png)
 
@@ -161,6 +170,12 @@ kubectl get po -w
 ```bash
 while true; do env TZ=Europe/Rome date  ;curl -s -X GET --header 'Accept: application/json' 'http://158.101.176.210:8080/admin/all'|jq; sleep 2; done
 ```
+
+```bash
+~/k9s
+```
+
+
 
 Dopo il deployment si verifica che l'applicazione sia effettivamente cambiata tramite Swagger UI.
 
