@@ -8,8 +8,8 @@
 
 - Creazione di un cluster Oracle Container Engine for Kubernetes tramite quick-start 
 - Policy di sicurezza OCI per la creazione di un cluster Oracle Container Engine for Kubernetes 
-- Amministrazione del cluster oke tramite OCI Cloud-Shell
 - Oracle Cloud Infrastructure Registry
+- Amministrazione del cluster oke tramite OCI Cloud-Shell
 - Installazione di un deployment ed esposizione di un servizio con Load Balancer pubblico
 
 ## Provisioning di un cluster Oracle Container Engine for Kubernetes tramite quick-start
@@ -44,51 +44,31 @@ Allow group <group-name> to use repos in tenancy
 
 https://docs.cloud.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengpolicyconfig.htm
 
-## Amministrazione del cluster oke tramite OCI cloud shell
-
-- avviare la cloud shell
-- eseguire il comando oci cli per download del kubeconfig file, e.g.
-
-```bash
-oci ce cluster create-kubeconfig --cluster-id <cluster-ocid> --file $HOME/.kube/config --region eu-frankfurt-1 --token-version 2.0.0s
-```
-
-- utilizzo dell'utility *kubectl* per verificare il corretto accesso al cluster, e.g.
-
-  ```bash
-  kubect get nodes
-  kubectl get pod,svc,secret,cm -A
-  ```
-
 ## Oracle Cloud Infrastructure Registry
 
 Oracle Cloud Infrastructure Registry è un registro gestito da Oracle che semplifica la memorizzazione, la condivisione e la gestione di artefatti di sviluppo come immagini Docker.
 
-- creiamo il repository "cnawebinar" di tipo privato
+- creiamo il repository "webinar-repo" di tipo privato
 - associano un auth token all'utenza OCI che eseguirà il pull & push delle immagini docker
 
-A questo punto proviamo ad eseguire il push di un'immagine docker sul repository cnawebinar appena creato:
 
 
+Proviamo ora ad eseguire il push di un'immagine docker sul nostro OCIR:
 
 ```bash
 docker pull nginx
 ```
 
-
-
 ```bash
 docker image ls
 ```
-
-
 
 ```bash
 docker tag <image-id> <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<tag> 
 ```
 
 ```bash
-#e.g. docker tag nginx:latest fra.ocir.io/frgp31lum6jg/nginx:1.0.0
+#e.g. docker tag  nginx:latest fra.ocir.io/frgp31lum6jg/cnawebinar/nginx:1.0.0
 ```
 
 
@@ -108,10 +88,29 @@ docker push <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<t
 ```
 
 ```bash
-#e.g. docker push fra.ocir.io/frgp31lum6jg/nginx:1.0.0
+#e.g. docker push fra.ocir.io/frgp31lum6jg/cnawebinar/nginx:1.0.0
 ```
 
+## Amministrazione del cluster oke tramite OCI cloud shell
 
+- avviare la cloud shell
+- eseguire il comando oci cli per download del kubeconfig file, e.g.
+
+```bash
+oci ce cluster create-kubeconfig --cluster-id <cluster-ocid> --file $HOME/.kube/config --region eu-frankfurt-1 --token-version 2.0.0s
+```
+
+- utilizzo dell'utility *kubectl* per verificare il corretto accesso al cluster, e.g.
+
+  ```bash
+  kubect get nodes
+  ```
+
+  ```
+  kubectl get pod,svc,secret,cm -A
+  ```
+
+  
 
 ## Installazione di un deployment con nginx e di un servizio con Load Balancer pubblico
 
@@ -157,7 +156,7 @@ spec:
       imagePullSecrets:
       - name: regcred	
       containers:
-      - image: fra.ocir.io/frgp31lum6jg/nginx:1.0.0
+      - image: fra.ocir.io/frgp31lum6jg/cnawebinar/nginx:1.0.0
         imagePullPolicy: IfNotPresent
         name: nginx
 EOF
@@ -179,7 +178,7 @@ IP=$(kubectl get svc nginx-service --output jsonpath='{.status.loadBalancer.ingr
 
 ## Modalità **di** **creazione** **di un cluster OKE** **su** OCI
 
-![image-20200710180157987](./image/image-20200710180157987.png)
+![image-20200712113216032](image/image-20200712113216032.png)
 
 Repository Terraform per OKE: https://github.com/oracle-terraform-modules/terraform-oci-oke
 
