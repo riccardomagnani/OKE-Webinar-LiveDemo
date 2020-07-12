@@ -123,7 +123,23 @@ kubectl get deploy,pod,services -n kubeview
 
 E' un tool stand-alone per sviluppatori molto utile installato sulla macchina *bastion*.
 
+Si lancia semplicemente da linea di comando bash.
+```bash
+~/k9s
+```
+Poi si usa come se fosse un `vim`.
+
 ![image-20200712162736152](image/image-20200712162736152.png)
+
+> Esempio:
+>
+> :ns
+>
+> :po
+>
+> :deploy
+>
+> :svc
 
 ## 3. K8S horizontal scaling
 
@@ -218,7 +234,7 @@ La logica di fondo e' la seguente:
 
 Durante il deployment si usano i seguenti strumenti per monitorare il `rolling rollout`(su due shell distinte):
 ```bash
-watch -n 1 kubectl get deployment,po -owide
+watch -n 1 kubectl get deployment,po,svc -owide
 ```
 ```bash
 kubectl get po -w
