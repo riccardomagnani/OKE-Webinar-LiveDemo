@@ -119,7 +119,7 @@ siege -c 10 -r 10000 "http://130.61.206.200/LoadOKE/TestOKEService?servlist=emai
 
 Dopo alcuni minuti di carico il sistema raggiunge il regime (massimi valori impostati nel hpa i.e. 10 pod per deployment).
 
-## CI/CD via Wercker
+## CI/CD con Wercker
 
 Useremo il seguente processo semplificato come template per implementare un la nostra pipeline CI/CD.
 
@@ -136,12 +136,15 @@ Si mostrano i componenti del sistema:
 - La nostra applicazione *MedRecAPI*REST API tramite Swagger UI:
   - Test delle funzionalità di base di una applicazione REST API con CRUD
 
-
+<br/>
 
 L'applicazione REST API containerizzata e' deployata sullo stesso cluster OKE nel namespace *default*.
+
 ```bash
 kubectl get po,svc
 ```
+
+<br/>
 
 La logica di fondo e' la seguente:
 
@@ -157,7 +160,7 @@ La logica di fondo e' la seguente:
 5. La nuova immagine una volta testata viene pushata su OCIR
 6. Alla fine Wercker fa il deployment su OKE della nuova Docker image tramite il manifest salvato su GIT
 
-
+<br/>
 
 Durante il deployment si usano i seguenti strumenti per monitorare il `rolling rollout`(su due shell distinte):
 ```bash
@@ -168,11 +171,19 @@ kubectl get po -w
 ```
 
 ```bash
-while true; do env TZ=Europe/Rome date  ;curl -s -X GET --header 'Accept: application/json' 'http://158.101.176.210:8080/admin/all'|jq; sleep 2; done
+~/k9s
 ```
 
+<br/>
+
+Per vedere gli item ritornati dalla API `/admin/all` si può usare:
+
 ```bash
-~/k9s
+curl -s -X GET --header 'Accept: application/json' 'http://158.101.176.210:8080/admin/all'|jq
+```
+Oppure in un loop (solo la size dell'array):
+```bash
+while true; do env TZ=Europe/Rome date  ;curl -s -X GET --header 'Accept: application/json' 'http://158.101.176.210:8080/admin/all'|jq length; sleep 2; done
 ```
 
 
