@@ -17,6 +17,10 @@ Su questa architettura sono deployati diverse applicazioni e tools.
 
 ![image-20200712173152428](image/image-20200712173152428.png)
 
+Si mostra il cluster sul tenant OCI Webinar2.
+
+<br/>
+
 Utilizzando la shell di una macchina Linux *bastion* con accesso pubblico si visualizzano le caratteristiche del sistema:
 
 ```bash
@@ -25,12 +29,14 @@ kubectl get no
 ```bash
 kubectl get no -L node-type
 ```
-Sui nodi monitoring-node=true sono installati i tool:
+Sui nodi `monitoring-node=true` sono installati i tool:
 ```bash
 kubectl get namespace
 ```
 
 In ogni namespace si trova una applicazione specifica.
+
+<br/>
 
 Ad esempio Grafana / Prometheus sono nel `namespace = monitoring`:
 ```bash
@@ -47,17 +53,37 @@ Utilizzeremo i seguenti tools:
 
 ### A. Rancher
 
-Classic Rancher view
+Rancher e' installato come docker container sulla macchine del bastion.
+
+```bash
+docker container ps
+```
+
+<br/>
+
+<u>Classic Rancher view</u>
 
 ![image-20200712162303208](image/image-20200712162303208.png)
 
-New Rancher dashboard
+<u>New Rancher dashboard</u>
 
 ![image-20200712162332639](image/image-20200712162332639.png)
 
 ### B. Grafana / Prometheus
+Sono installati sui minions parte del `tools pool`:
+```bash
+kubectl get pod -n monitoring
+```
 
 ![image-20200712162544682](image/image-20200712162544682.png)
+
+Si possono aggiungere
+
+* Grafana dashboard dal [Marketplace](https://grafana.com/grafana/dashboards)
+
+* Grafana [Plugin](https://grafana.com/grafana/plugins?utm_source=grafana_plugin_list)
+
+<br/>
 
 ### C. Kibana / ElasticSearch
 
