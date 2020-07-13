@@ -6,15 +6,15 @@
 
 ## Agenda
 
-- Creazione di un cluster Oracle Container Engine for Kubernetes tramite quick-start 
-- Policy di sicurezza OCI per la creazione di un cluster Oracle Container Engine for Kubernetes 
-- Oracle Cloud Infrastructure Registry
-- Amministrazione del cluster oke tramite OCI Cloud-Shell
+- Creazione di un cluster Oracle Container Engine for Kubernetes (OKE) tramite quick-start 
+- Policy di sicurezza OCI per la creazione di un cluster OKE
+- Oracle Cloud Infrastructure Registry (OCIR)
+- Amministrazione del cluster OKE tramite OCI Cloud-Shell
 - Installazione di un deployment ed esposizione di un servizio con Load Balancer pubblico
 - Modalità di creazione di un cluster OKE su OCI
 - Resource Manager
 
-## Provisioning di un cluster Oracle Container Engine for Kubernetes tramite quick-start
+## Provisioning di un cluster OKE tramite quick-start
 
 ![image-20200713111551657](image/image-20200713111551657.png)
 
