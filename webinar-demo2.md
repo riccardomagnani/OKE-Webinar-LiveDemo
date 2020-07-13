@@ -31,12 +31,13 @@ kubectl get no
 ```bash
 kubectl get no -L node-type
 ```
-Sui nodi `monitoring-node=true` sono installati i tool:
+Sui nodi `monitoring-node=true` sono installati i tool di logging / alerting / monitoring.
+
+In ogni namespace si trova una applicazione specifica.
+
 ```bash
 kubectl get namespace
 ```
-
-In ogni namespace si trova una applicazione specifica.
 
 <br/>
 
@@ -91,11 +92,11 @@ df -h .
 
 <br/>
 
-<u>Classic Rancher view</u>
+#### Classic Rancher view
 
 ![image-20200712162303208](image/image-20200712162303208.png)
 
-<u>New Rancher dashboard</u>
+#### New Rancher dashboard
 
 ![image-20200712162332639](image/image-20200712162332639.png)
 
@@ -115,7 +116,7 @@ Si possono aggiungere
 
 <br/>
 
-### C. Kibana / ElasticSearch / Fluentd
+### C. ElasticSearch / Fluentd / Kibana
 Sono installati sui minions k8s del `tools pool`:
 ```bash
 kubectl get deploy,ds,statefulset,pod,services,ingress -n logging-efk
