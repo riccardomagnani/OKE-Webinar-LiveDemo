@@ -209,15 +209,20 @@ Useremo il seguente processo semplificato come template per implementare un la n
 
 ![image-20200712160415907](image/image-20200712160415907.png)
 
+
+
+Oracle Wercker e' un SaaS che consente agli sviluppatori di sviluppare pipeline di CI/CD per le loro applicazioni e microservizi, quindi automatizza build, test e deploy del software sui vari ambienti. Wercker e' partito come progetto open-source nel 2010 cofinanziato da una venture capital e dal MIT e' stato acquisito da Oracle per integrarlo con i propri prodotti mantenendo comunque l'intenzione di integrazione con gli altri software open-source.
+
+<br/>
+
 Si mostrano i componenti del sistema:
 
 - <u>Developer IDE</u>: tramite il quale gli sviluppatori gestiscono / modificano una applicazione denominata *MedRecAPI* che implementa delle REST API sviluppate in Java
-- La pipeline <u>Werker</u>
-- <u>Developer Cloud Services</u> (DevCS) usato per il GIT
+- <u>GIT hub</u> usato per il GIT (in alternativa potevamo usare anche DevCS come GIT)
 - <u>Wercker</u> come motore CI/CD (build, test, deploy)
 - <u>OCIR</u> come registry per le immagini
 - <u>OKE</u> (lo stesso cluster già usato prima)
-- La nostra applicazione *MedRecAPI*REST API tramite Swagger UI:
+- La nostra applicazione *MedRecAPI*REST API tramite Swagger UI (Medical Record API):
   - Test delle funzionalità di base di una applicazione REST API con CRUD
 
 <br/>
@@ -225,7 +230,7 @@ Si mostrano i componenti del sistema:
 L'applicazione REST API containerizzata e' deployata sullo stesso cluster OKE nel namespace *default*.
 
 ```bash
-kubectl get po,svc
+kubectl get deploy,po,svc
 ```
 
 <br/>
