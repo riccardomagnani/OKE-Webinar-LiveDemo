@@ -61,10 +61,7 @@ Rancher e' un tool opensource web di gestione di cluster Kubernetes multi-vendor
 Suse Linux ha appena annunciato l'intenzione di acquistare Rancher.
 
 Nel nostro caso, per semplicità, Rancher e' installato in single instance come docker container sulla macchine del *bastion* (Rancher può essere installato anche in HA su un cluster Kubernetes).
-```bash
-docker run -d --restart=unless-stopped -p 80:80 -p 443:443 -v /rancher-bv:/var/lib/rancher rancher/rancher:latest
-```
-<br/>
+
 Per vedere IP reale e docker running:
 
 ```bash
@@ -74,22 +71,6 @@ curl ipinfo.io
 ```bash
 docker container ps
 ```
-
-Le configurazioni del Rancher sono persistete sul Block Volume della *bastion*:
-```bash
-ls -l /rancher-bv/
-```
-Infatti si puo vedere da qua:
-```bash
-docker exec -it b29f38d3f7fa bash
-```
-```bash
-cd /var/lib/rancher
-```
-```bash
-df -h .
-```
-
 <br/>
 
 #### Classic Rancher view
