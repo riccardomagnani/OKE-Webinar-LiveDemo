@@ -213,7 +213,7 @@ Si mostrano i componenti del sistema:
 L'applicazione REST API containerizzata e' deployata sullo stesso cluster OKE nel namespace *default*.
 
 ```bash
-kubectl get deploy,po,svc
+kubectl get deploy,po,svc -owide
 ```
 
 <br/>
