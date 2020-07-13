@@ -117,7 +117,7 @@ E' installato sui minions k8s del `tools pool`:
 kubectl get deploy,pod,services -n kubeview
 ```
 
-![image-20200712162713689](image/image-20200712162713689.png)
+![image-20200713071936811](image/image-20200713071936811.png)
 
 ### E. k9s
 
