@@ -11,8 +11,12 @@
 - Oracle Cloud Infrastructure Registry
 - Amministrazione del cluster oke tramite OCI Cloud-Shell
 - Installazione di un deployment ed esposizione di un servizio con Load Balancer pubblico
+- Modalità di creazione di un cluster OKE su OCI
+- Resource Manager
 
 ## Provisioning di un cluster Oracle Container Engine for Kubernetes tramite quick-start
+
+![image-20200713101958200](image/image-20200713101958200.png)
 
 ## Policy di sicurezza per la creazione di un cluster OKE e accesso ad OCIR
 
@@ -182,3 +186,6 @@ IP=$(kubectl get svc nginx-service --output jsonpath='{.status.loadBalancer.ingr
 
 Repository Terraform per OKE: https://github.com/oracle-terraform-modules/terraform-oci-oke
 
+## Resource Manager
+
+![image-20200713093751679](image/image-20200713093751679.png)
