@@ -179,10 +179,6 @@ Oppure i seguenti tool:
 
 ### Stress del sistema
 
-Il front-end dell'applicazione e' a questo indirizzo:
-```bash
-kubectl get services -n main-app
-```
 Si lancia il carico sul sistema con il seguente comando:
 ```bash
 siege -c 10 -r 10000 "http://130.61.206.200/LoadOKE/TestOKEService?servlist=email-service.core-services.svc.cluster.local:8080,pdf-generation-service.core-services.svc.cluster.local:8080,digitalsignchecker-service.core-services.svc.cluster.local:8080&threadnum=5,5,5&elabtime=100,100,100&errperc=10,5,10"
