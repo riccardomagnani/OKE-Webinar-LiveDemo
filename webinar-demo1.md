@@ -16,7 +16,7 @@
 
 ## Provisioning di un cluster Oracle Container Engine for Kubernetes tramite quick-start
 
-![image-20200713101958200](image/image-20200713101958200.png)
+![image-20200713111551657](image/image-20200713111551657.png)
 
 ## Policy di sicurezza per la creazione di un cluster OKE e accesso ad OCIR
 
