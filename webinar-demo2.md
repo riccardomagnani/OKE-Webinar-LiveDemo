@@ -11,13 +11,13 @@
 
 Questa l'architettura utilizzata durante la Demo 2 del Webinar OKE.
 
-![image-20200712172925017](image/image-20200712172925017.png)
+![image-20200713110925598](image/image-20200713110925598.png)
 
-Oltre a queste macchine IaaS che compongono il cluster OKE c'e' una macchina IaaS Oracle Linux con indirizzo pubblico che fa da ponte verso il cluster che chiameremo *bastion*.
+Oltre a queste macchine IaaS che compongono il cluster OKE c'e' una macchina IaaS Oracle Linux con indirizzo pubblico che fa da ponte verso il cluster che chiameremo ***bastion***.
 
 Su questa architettura sono deployati diverse applicazioni e tools.
 
-![image-20200712173152428](image/image-20200712173152428.png)
+![image-20200713111017613](image/image-20200713111017613.png)
 
 Si mostra il cluster sul tenant OCI Webinar2.
 
@@ -60,6 +60,12 @@ Rancher e' un tool opensource web di gestione di cluster Kubernetes multi-vendor
 Suse Linux ha appena annunciato l'intenzione di acquistare Rancher.
 
 Nel nostro caso, per semplicità, Rancher e' installato in single instance come docker container sulla macchine del *bastion* (Rancher può essere installato anche in HA su un cluster Kubernetes).
+```bash
+docker run -d --restart=unless-stopped -p 80:80 -p 443:443 -v /rancher-bv:/var/lib/rancher rancher/rancher:latest
+```
+<br/>
+Per vedere IP reale e docker running:
+
 ```bash
 curl ipinfo.io
 ```
@@ -159,7 +165,7 @@ Poi si usa come se fosse un `vim`.
 
 La seguente figura illustra la Sample application nella quale verra' indotto stress:
 
-![image-20200711153929561](image/image-20200711153929561.png)
+![image-20200713110756687](image/image-20200713110756687.png)
 
 Per vedere i componenti deployati nel cluster che sottintendano la Sample application (due namespaces) si possono usare i seguenti comandi:
 ```bash
