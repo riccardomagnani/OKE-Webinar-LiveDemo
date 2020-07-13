@@ -45,10 +45,6 @@ Ad esempio Grafana / Prometheus sono nel `namespace = monitoring`:
 ```bash
 kubectl get pod -n monitoring
 ```
-Stesso risultato si puo vedere in maniera piu agevole anche tramite k9s:
-```bash
-~/k9s
-```
 
 ## 2. CNA tools
 
@@ -77,11 +73,16 @@ docker container ps
 
 ![image-20200712162303208](image/image-20200712162303208.png)
 
+<br/>
+
 #### New Rancher dashboard
 
 ![image-20200712162332639](image/image-20200712162332639.png)
 
+<br/>
+
 ### B. Grafana / Prometheus
+
 Sono installati sui minions parte del `tools pool`:
 ```bash
 kubectl get pod,services -n monitoring
@@ -119,6 +120,8 @@ kubectl get deploy,pod,services -n kubeview
 
 ![image-20200713071936811](image/image-20200713071936811.png)
 
+<br/>
+
 ### E. k9s
 
 E' un tool stand-alone per sviluppatori molto utile installato sulla macchina *bastion*.
@@ -140,6 +143,8 @@ Poi si usa come se fosse un `vim`.
 > :deploy
 >
 > :svc
+
+<br/>
 
 ## 3. K8S horizontal scaling
 
