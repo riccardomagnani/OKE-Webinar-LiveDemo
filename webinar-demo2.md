@@ -177,24 +177,23 @@ kubectl get deployment,pod,hpa,services,endpoints -n core-services -owide
 
 ### Monitoring
 
-Per monitorare il sistema durante il carico si può usare il seguente comando (da lanciare su altra shell rispetto a quella in cui si lancia il 'siege'):
+Per monitorare il sistema durante il carico si può usare il seguente comando (da lanciare su altra shell rispetto a quella in cui si lancia il `siege`):
 
 ```bash
-kubectl top no && echo && kubectl get hpa,po -n core-services
+watch -n 1 "kubectl top no && echo && kubectl get hpa,po -n core-services"
 ```
 ```bash
 ~/k9s
 ```
 
 Oppure i seguenti tool:
-
-* Rancher
 * KubeView
 * Grafana
   * Dashboard Cluster
   * Dashboard Nodes
 * Kibana
   * Mostrare le varie "Search"
+* Rancher
 
 ### Stress del sistema
 
@@ -213,9 +212,9 @@ Dopo alcuni minuti di carico il sistema raggiunge il regime (massimi valori impo
 
 Useremo il seguente processo semplificato come template per implementare un la nostra pipeline CI/CD.
 
-![image-20200712160415907](image/image-20200712160415907.png)
+![image-20200713111428193](image/image-20200713111428193.png)
 
-
+<br/>
 
 Oracle Wercker e' un SaaS che consente agli sviluppatori di sviluppare pipeline di CI/CD per le loro applicazioni e microservizi, quindi automatizza build, test e deploy del software sui vari ambienti. Wercker e' partito come progetto open-source nel 2010 cofinanziato da una venture capital e dal MIT e' stato acquisito da Oracle per integrarlo con i propri prodotti mantenendo comunque l'intenzione di integrazione con gli altri software open-source.
 
