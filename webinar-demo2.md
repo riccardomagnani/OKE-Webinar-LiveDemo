@@ -5,13 +5,15 @@
 1. Overview del sistema utilizzato per questa demo
 2. CNA tools
 3. K8S horizontal scaling
-4. CI/CD via Wercker
+4. CI/CD con Wercker
 
 ## 1. Overview del sistema
 
-Questa l'architettura utilizzata nella Demo 2.
+Questa l'architettura utilizzata durante la Demo 2 del Webinar OKE.
 
 ![image-20200712172925017](image/image-20200712172925017.png)
+
+Oltre a queste macchine IaaS che compongono il cluster OKE c'e' una macchina IaaS Oracle Linux con indirizzo pubblico che fa da ponte verso il cluster che chiameremo *bastion*.
 
 Su questa architettura sono deployati diverse applicazioni e tools.
 
@@ -53,7 +55,14 @@ Utilizzeremo i seguenti tools:
 
 ### A. Rancher
 
-Rancher e' installato in single instance come docker container sulla macchine del *bastion*.
+Rancher e' un tool opensource web di gestione di cluster Kubernetes multi-vendor "at scale". Consente anche l'installazione di CNA tools e plugin sui cluster Kubernetes che amministra.
+
+Suse Linux ha appena annunciato l'intenzione di acquistare Rancher.
+
+Nel nostro caso, per semplicità, Rancher e' installato in single instance come docker container sulla macchine del *bastion* (Rancher può essere installato anche in HA su un cluster Kubernetes).
+```bash
+curl ipinfo.io
+```
 
 ```bash
 docker container ps
@@ -103,7 +112,10 @@ Si possono aggiungere
 ### C. Kibana / ElasticSearch / Fluentd
 Sono installati sui minions k8s del `tools pool`:
 ```bash
-kubectl get deploy,ds,statefulset,pod,services -n logging-efk
+kubectl get deploy,ds,statefulset,pod,services,ingress -n logging-efk
+```
+```bash
+kubectl get deploy,pod,services -n logging-ingress
 ```
 
 ![image-20200712162654470](image/image-20200712162654470.png)
@@ -162,7 +174,7 @@ kubectl get deployment,pod,hpa,services,endpoints -n core-services -owide
 Per monitorare il sistema durante il carico si può usare il seguente comando (da lanciare su altra shell rispetto a quella in cui si lancia il 'siege'):
 
 ```bash
-watch -n 1 "kubectl top no && kubectl get hpa,po -n core-services"
+kubectl top no && echo && kubectl get hpa,po -n core-services
 ```
 ```bash
 ~/k9s
@@ -180,9 +192,11 @@ Oppure i seguenti tool:
 
 ### Stress del sistema
 
+Il front-end dell'applicazione e' a questo indirizzo:
+```bash
+kubectl get services -n main-app
+```
 Si lancia il carico sul sistema con il seguente comando:
-
-
 ```bash
 siege -c 10 -r 10000 "http://130.61.206.200/LoadOKE/TestOKEService?servlist=email-service.core-services.svc.cluster.local:8080,pdf-generation-service.core-services.svc.cluster.local:8080,digitalsignchecker-service.core-services.svc.cluster.local:8080&threadnum=5,5,5&elabtime=100,100,100&errperc=10,5,10"
 ```
