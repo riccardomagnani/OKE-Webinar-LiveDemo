@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medrecapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: medrecapi
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: medrecapi
+        version: v1
+    spec:
+      containers:
+      - name: medrecapi
+        image: fra.ocir.io/emeaseitalysandbox/medrecapi:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources:
+          limits:
+            cpu: 2
+            memory: 2G
+          requests:
+            cpu: 200m
+            memory: 500M
+      imagePullSecrets:
+      - name: ocirsecret
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: medrecapi
+  labels:
+    app: medrecapi
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: medrecapi
+  type: LoadBalancer
